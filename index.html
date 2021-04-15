@@ -8,25 +8,109 @@
   </head>
   <body>
     <section id="abstract">
-      <p>This document proposes extensions to the [[SCREEN-CAPTURE]].</p>
+      <p>
+        This document proposes a variant of
+        <a data-cite="SCREEN-CAPTURE#dom-mediadevices-getdisplaymedia">getDisplayMedia</a>.
+      </p>
     </section>
     <section id="sotd"></section>
     <section id="conformance"></section>
-    <section id="terminology">
-      <h2>Terminology</h2>
-      <p>
-        This document uses the definitions of
-        <a data-cite="SCREEN-CAPTURE#dfn-display-surface"><dfn>display surfaces</dfn></a>
-        from [[!SCREEN-CAPTURE]], including the distinction between
-        <a data-cite="SCREEN-CAPTURE#dfn-browser"><dfn>browser</dfn></a
-        >, <a data-cite="SCREEN-CAPTURE#dfn-windows"><dfn>window</dfn></a> and
-        <a data-cite="SCREEN-CAPTURE#dfn-monitor"><dfn>monitor</dfn></a>
-        <a data-cite="SCREEN-CAPTURE#dfn-display-surface">display surfaces</a>.
-      </p>
-    </section>
     <section id="introduction">
-      <h3>Introduction</h3>
-      <p>This document presents <code>getCurrentBrowsingContextMedia</code>.</p>
+      <h2>Introduction</h2>
+      <p>
+        This document presents <code>navigator.mediaDevices.getCurrentBrowsingContextMedia</code>.
+      </p>
+      <section>
+        <h3>Background</h3>
+        <section>
+          <h4>getDisplayMedia</h4>
+          <p>
+            Consider
+            <a data-cite="SCREEN-CAPTURE#dom-mediadevices-getdisplaymedia">getDisplayMedia</a>. It
+            allows applications to prompt the user for permission to capture a
+            <a data-cite="SCREEN-CAPTURE#dfn-display-surface">display surface</a>.
+            <a data-cite="SCREEN-CAPTURE#">The document</a> specifying
+            <a data-cite="SCREEN-CAPTURE#dom-mediadevices-getdisplaymedia">getDisplayMedia</a>
+            mandates that the application must not be allowed to influence the user's selection.
+            That part of the standard is the source of recurring debates.
+          </p>
+          <ul>
+            <li>
+              On the one hand, the principle is sound - what a legitimate application can control, a
+              malicious application can abuse.
+            </li>
+            <li>
+              On the other hand, user agents may order
+              <a data-cite="SCREEN-CAPTURE#dfn-display-surface">display surfaces</a>
+              in any order and still be spec-compliant. Even if the riskiest option is presented
+              first. Which sometimes does happen.
+            </li>
+          </ul>
+          <p>
+            The riskiest option is the <a data-cite="SCREEN-CAPTURE#dfn-monitor">current screen</a>.
+          </p>
+          <ul>
+            <li>
+              Many users have only a single monitor. For them, sharing the
+              <a data-cite="SCREEN-CAPTURE#dfn-monitor">current screen</a> amounts to sharing
+              everything.
+            </li>
+            <li>
+              The current tab, which is very risky by virtue of being under the application's
+              control, is visible on the
+              <a data-cite="SCREEN-CAPTURE#dfn-monitor">current screen</a> when capture starts. This
+              means a malicious application can embed and capture cross-origin content, which sould
+              normally be opaque. A single frame is sufficient for such attacks.
+            </li>
+          </ul>
+        </section>
+        <section>
+          <h4>getViewportMedia</h4>
+          <p>
+            An API called <code>getViewportMedia</code> is currently being standardized. Some
+            opinions differ with respect to the required security measures.
+          </p>
+          <ul>
+            <li>
+              Some WebRTC WG members position is that <code>cross-site isolation</code> is needed,
+              as well as an opt-in header.
+            </li>
+            <li>
+              Other WebRTC WG members believe that these security measures are but one option.
+              Another option is for <code>getViewportMedia</code> to present a
+              <a data-cite="SCREEN-CAPTURE#dom-mediadevices-getdisplaymedia">getDisplayMedia</a
+              >-like dialog to the user, permitting the user to choose any
+              <a data-cite="SCREEN-CAPTURE#dfn-display-surface">display surfaces</a>, but presenting
+              the current tab as the first option. Such an option would comply with the standard's
+              requirements of
+              <a data-cite="SCREEN-CAPTURE#dom-mediadevices-getdisplaymedia">getDisplayMedia</a>.
+            </li>
+          </ul>
+          <p>
+            One main concern with the former option of COI and opt-in header, is that it sets a very
+            high barrier to entry, which might hinder <code>getViewportMedia</code>'s adoption.
+          </p>
+        </section>
+        <section>
+          <h4>Conclusion</h4>
+          <p>
+            A variant of
+            <a data-cite="SCREEN-CAPTURE#dom-mediadevices-getdisplaymedia">getDisplayMedia</a> that
+            allows the user unconstrained
+            <a data-cite="SCREEN-CAPTURE#dfn-display-surface">display surface</a> choice, but which
+            orders <a data-cite="SCREEN-CAPTURE#dfn-display-surface">display surfaces</a> so that
+            <a data-cite="SCREEN-CAPTURE#dfn-monitor">current screen</a> is NOT the first option,
+            would be both spec-compliant as well as an improvement for user privacy and security.
+          </p>
+          <p>
+            If this variant presents the current tab as the first option, it will also be an
+            alternative to <code>getViewportMedia</code> that can be called from a context lacking
+            either COI or the opt-in header. (Recall that the current screen contains the current
+            tab, and is therefore riskier.)
+          </p>
+          <p>We therefore propose [=getCurrentBrowsingContextMedia=].</p>
+        </section>
+      </section>
     </section>
   </body>
 </html>
