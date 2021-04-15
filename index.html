@@ -112,5 +112,29 @@
         </section>
       </section>
     </section>
+    <section id="get-current-browsing-context-media">
+      <h2>getCurrentBrowsingContextMedia</h2>
+      <pre class="idl">
+        partial interface MediaDevices {
+          Promise&lt;MediaStream&gt; getCurrentBrowsingContextMedia(
+              optional DisplayMediaStreamConstraints constraints = {});
+        };
+      </pre>
+      <dl data-link-for="MediaDevices" data-dfn-for="MediaDevices" class="methods">
+        <dt>
+          <dfn>getCurrentBrowsingContextMedia</dfn>
+        </dt>
+        <dd>
+          <p>
+            Identical to
+            <a data-cite="SCREEN-CAPTURE#dom-mediadevices-getdisplaymedia">getDisplayMedia</a>, with
+            the only difference being that if the user agent normally displays the
+            <a data-cite="SCREEN-CAPTURE#dfn-monitor">current screen</a> as the most prominent
+            option, then the user agent SHOULD display the current tab as the most prominent option
+            instead.
+          </p>
+        </dd>
+      </dl>
+    </section>
   </body>
 </html>
