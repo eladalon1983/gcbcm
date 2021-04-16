@@ -64,10 +64,10 @@
           </ul>
         </section>
         <section>
-          <h4>getViewportMedia</h4>
+          <h4><dfn>getViewportMedia</dfn></h4>
           <p>
-            An API called <code>getViewportMedia</code> is currently being standardized. Some
-            opinions differ with respect to the required security measures.
+            An API called [=getViewportMedia=] is currently being standardized. Some opinions differ
+            with respect to the required security measures.
           </p>
           <ul>
             <li>
@@ -79,7 +79,7 @@
               Other WebRTC WG members believe that mandating
               <a data-cite="HTML#dom-crossoriginisolated">cross-origin isolation</a> and a new
               <code>opt-in header</code> is one option, and that another option is for
-              <code>getViewportMedia</code> to present a
+              [=getViewportMedia=] to present a
               <a data-cite="SCREEN-CAPTURE#dom-mediadevices-getdisplaymedia">getDisplayMedia</a
               >-like dialog to the user, permitting the user to choose any
               <a data-cite="SCREEN-CAPTURE#dfn-display-surface">display surface</a>, but presenting
@@ -92,7 +92,7 @@
             One main concern over requiring
             <a data-cite="HTML#dom-crossoriginisolated">cross-origin isolation</a> and a new
             <code>opt-in header</code>, is that it sets a very high barrier to entry, which might
-            hinder <code>getViewportMedia</code>'s adoption.
+            hinder [=getViewportMedia=]'s adoption.
           </p>
         </section>
         <section>
@@ -110,9 +110,9 @@
           <p>
             If this variant presents the current
             <a data-cite="SCREEN-CAPTURE#dfn-browser">tab</a> as the first option, it will also be
-            an alternative to <code>getViewportMedia</code> that can be called from a context
-            lacking either <a data-cite="HTML#dom-crossoriginisolated">cross-origin isolation</a> or
-            the opt-in header. (Recall that the current screen contains the current
+            an alternative to [=getViewportMedia=] that can be called from a context lacking either
+            <a data-cite="HTML#dom-crossoriginisolated">cross-origin isolation</a> or the opt-in
+            header. (Recall that the current screen contains the current
             <a data-cite="SCREEN-CAPTURE#dfn-browser">tab</a>, and is therefore riskier.)
           </p>
           <p>We therefore propose {{MediaDevices/getCurrentBrowsingContextMedia}}.</p>
@@ -133,7 +133,7 @@
         </dt>
         <dd>
           <p>
-            Similar to the proposed <a>getViewportMedia</a>, but
+            Similar to the proposed [=getViewportMedia=], but
             <a data-cite="HTML#dom-crossoriginisolated">cross-origin isolation</a> and the new
             <code>opt-in header</code> are not required. In place of these missing security
             measures, the user agent MUST offer the user unlimited choice of
