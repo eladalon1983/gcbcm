@@ -133,14 +133,20 @@
         </dt>
         <dd>
           <p>
-            Identical to
-            <a data-cite="SCREEN-CAPTURE#dom-mediadevices-getdisplaymedia">getDisplayMedia</a>, with
-            the only difference being that if the user agent normally displays the current
-            <a data-cite="SCREEN-CAPTURE#dfn-monitor">screen</a> as the most prominent option when
+            Similar to the proposed <a>getViewportMedia</a>, but
+            <a data-cite="HTML#dom-crossoriginisolated">cross-origin isolation</a> and the new
+            <code>opt-in header</code> are not required. In place of these missing security
+            measures, the user agent MUST offer the user unlimited choice of
+            <a data-cite="SCREEN-CAPTURE#dfn-display-surface">display surfaces</a>, as is the case
+            with <a data-cite="SCREEN-CAPTURE#dom-mediadevices-getdisplaymedia">getDisplayMedia</a>.
+          </p>
+          <p>
+            Unlike
+            <a data-cite="SCREEN-CAPTURE#dom-mediadevices-getdisplaymedia">getDisplayMedia</a>,
+            {{MediaDevices/getCurrentBrowsingContextMedia}} SHOULD present the current tab as the
+            most prominent option, whereas
             <a data-cite="SCREEN-CAPTURE#dom-mediadevices-getdisplaymedia">getDisplayMedia</a> is
-            invoked, then the user agent SHOULD display the current
-            <a data-cite="SCREEN-CAPTURE#dfn-browser">tab</a> as the most prominent option when
-            {{MediaDevices/getCurrentBrowsingContextMedia}} is invoked.
+            not required to do so.
           </p>
         </dd>
       </dl>
