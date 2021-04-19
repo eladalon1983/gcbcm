@@ -73,7 +73,9 @@
             <li>
               Some WebRTC WG members position is that
               <a data-cite="HTML#dom-crossoriginisolated">cross-origin isolation</a> is needed, as
-              well as a yet unspecified <code>opt-in header</code>.
+              well as a yet unspecified <code>opt-in header</code>. This ensures that embedded
+              documents and sub-resources opt-in to being capturable, addressing the concern of a
+              malicious document reading cross-origin content using [=getViewportMedia=].
             </li>
             <li>
               Other WebRTC WG members believe that mandating
@@ -83,9 +85,12 @@
               <a data-cite="SCREEN-CAPTURE#dom-mediadevices-getdisplaymedia">getDisplayMedia</a
               >-like dialog to the user, permitting the user to choose any
               <a data-cite="SCREEN-CAPTURE#dfn-display-surface">display surface</a>, but presenting
-              the current <a data-cite="SCREEN-CAPTURE#dfn-browser">tab</a> as the first option.
-              Note that this would comply with the standard's requirements for
-              <a data-cite="SCREEN-CAPTURE#dom-mediadevices-getdisplaymedia">getDisplayMedia</a>.
+              the current <a data-cite="SCREEN-CAPTURE#dfn-browser">tab</a> as the first option. The
+              rationale here is that if [=getViewportMedia=] is a variation of
+              <a data-cite="SCREEN-CAPTURE#dom-mediadevices-getdisplaymedia">getDisplayMedia</a>
+              that does poses no regression to privacy and security. (Note that this would comply
+              with the standard's requirements for
+              <a data-cite="SCREEN-CAPTURE#dom-mediadevices-getdisplaymedia">getDisplayMedia</a>.)
             </li>
           </ul>
           <p>
