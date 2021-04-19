@@ -138,20 +138,22 @@
         </dt>
         <dd>
           <p>
-            Similar to the proposed [=getViewportMedia=], but
-            <a data-cite="HTML#dom-crossoriginisolated">cross-origin isolation</a> and the new
-            <code>opt-in header</code> are not required. In place of these missing security
-            measures, the user agent MUST offer the user unlimited choice of
-            <a data-cite="SCREEN-CAPTURE#dfn-display-surface">display surfaces</a>, as is the case
-            with <a data-cite="SCREEN-CAPTURE#dom-mediadevices-getdisplaymedia">getDisplayMedia</a>.
-          </p>
-          <p>
-            Unlike
-            <a data-cite="SCREEN-CAPTURE#dom-mediadevices-getdisplaymedia">getDisplayMedia</a>,
-            {{MediaDevices/getCurrentBrowsingContextMedia}} SHOULD present the current tab as the
-            most prominent option, whereas
+            When {{MediaDevices/getCurrentBrowsingContextMedia}} is invoked, the user agent MUST run
+            through all of the steps of
+            <a data-cite="SCREEN-CAPTURE#dom-mediadevices-getdisplaymedia">getDisplayMedia</a>, with
+            one key difference - {{MediaDevices/getCurrentBrowsingContextMedia}} SHOULD present the
+            current tab as the most prominent option, whereas
             <a data-cite="SCREEN-CAPTURE#dom-mediadevices-getdisplaymedia">getDisplayMedia</a> is
             not required to do so.
+          </p>
+          <p>
+            Note: If [=getViewportMedia=] is extended in the future to accept additional parameters,
+            {{MediaDevices/getCurrentBrowsingContextMedia}}'s specification will be updated to
+            describe how {{MediaDevices/getCurrentBrowsingContextMedia}} should behave if given the
+            same paramers. The intention is to provide similar functionality to [=getViewportMedia=]
+            without requiring
+            <a data-cite="HTML#dom-crossoriginisolated">cross-origin isolation</a> or the new
+            <code>opt-in header</code>.
           </p>
         </dd>
       </dl>
